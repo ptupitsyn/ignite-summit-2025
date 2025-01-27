@@ -52,6 +52,8 @@ public class Main {
 
         // Compute
         // TBD: Colocated update
+
+        // TBD: Get back to CLI and show the data from there (unified CLI can do all the things).
     }
 
     public static class Person {
