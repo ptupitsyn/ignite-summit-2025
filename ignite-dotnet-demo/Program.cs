@@ -1,6 +1,7 @@
 ﻿using Apache.Ignite;
 using Apache.Ignite.Sql;
 using Apache.Ignite.Table;
+using Apache.Ignite.Transactions;
 
 var cfg = new IgniteClientConfiguration("localhost");
 using IIgniteClient client = await IgniteClient.StartAsync(cfg);
@@ -54,6 +55,18 @@ foreach (string name in query2)
 {
     Console.WriteLine(name);
 }
+
+// Read-only TX: snapshot of data at the time of TX start.
+await using ITransaction roTx = await client.Transactions.BeginAsync(new TransactionOptions(ReadOnly: true));
+
+Option<Person> roTxRes1 = await pocoView.GetAsync(roTx, new Person(3, null!));
+
+await pocoView.UpsertAsync(transaction:null, new Person(3, "JACK-2")); // Update after RO TX.
+
+Option<Person> roTxRes2 = await pocoView.GetAsync(roTx, new Person(3, null!));
+Option<Person> actualRes = await pocoView.GetAsync(null, new Person(3, null!));
+
+Console.WriteLine($"RO TX result 1: {roTxRes1.Value}, 2: {roTxRes2.Value}, no tx result: {actualRes.Value}");
 
 // Model
 public record Person(int Id, string Name);
