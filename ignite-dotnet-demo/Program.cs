@@ -9,10 +9,6 @@ using IIgniteClient client = await IgniteClient.StartAsync(cfg);
 Console.WriteLine("Connected: " + client);
 
 // SQL API.
-await client.Sql.ExecuteAsync(null, "DROP TABLE IF EXISTS Person");
-await client.Sql.ExecuteAsync(null, "CREATE TABLE Person (id INT PRIMARY KEY, name VARCHAR)");
-await client.Sql.ExecuteAsync(null, "UPSERT INTO Person VALUES (1, 'John')");
-
 await foreach (IIgniteTuple row in await client.Sql.ExecuteAsync(null, "SELECT * FROM Person"))
 {
     Console.WriteLine(row);
