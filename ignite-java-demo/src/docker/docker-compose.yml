@@ -31,3 +31,5 @@ services:
 # Init cluster:
 # docker run --rm -it --network=host -e LANG=C.UTF-8 -e LC_ALL=C.UTF-8 apacheignite/ignite:3.0.0 cli
 # cluster init --name=mycluster --metastorage-group=node1
+# CREATE TABLE Person (id INT PRIMARY KEY, name VARCHAR)
+# INSERT INTO Person (id, name) VALUES (-1, 'Foo Bar')
