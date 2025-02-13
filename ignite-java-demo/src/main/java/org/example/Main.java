@@ -12,10 +12,10 @@ import org.apache.ignite.table.Tuple;
 public class Main {
     public static void main(String[] args) {
         IgniteClient client = IgniteClient.builder()
-                .addresses("localhost:10300", "localhost:10301", "localhost:10302")
+                .addresses("localhost:10800", "localhost:10801", "localhost:10802")
                 .build();
 
-        System.out.println("Connected to the cluster: " + client.connections().get(0));
+        System.out.println("Connected to the cluster: " + client.connections());
 
         // SQL API (use table created in CLI with 'CREATE TABLE Person (id INT PRIMARY KEY, name VARCHAR)').
         client.sql().execute(null, "UPSERT INTO Person VALUES (1, 'John')");
