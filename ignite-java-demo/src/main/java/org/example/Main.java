@@ -12,7 +12,7 @@ import org.apache.ignite.table.Tuple;
 public class Main {
     public static void main(String[] args) {
         IgniteClient client = IgniteClient.builder()
-                .addresses("localhost")
+                .addresses("localhost:10300", "localhost:10301", "localhost:10302")
                 .build();
 
         System.out.println("Connected to the cluster: " + client.connections().get(0));
