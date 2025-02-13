@@ -28,4 +28,6 @@ services:
       - 10302:10300
       - 10802:10800
 
-# Init cluster: docker run --rm -it apacheignite/ignite:3.0.0 cli
+# Init cluster:
+# * docker run --rm -it --network=host apacheignite/ignite:3.0.0 cli
+# * cluster init --name=mycluster --metastorage-group=node1
