@@ -7,7 +7,6 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven("https://repository.apache.org/content/repositories/orgapacheignite-1569/")
 }
 
 dependencies {
