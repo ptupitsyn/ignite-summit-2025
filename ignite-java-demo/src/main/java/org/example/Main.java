@@ -17,8 +17,7 @@ public class Main {
 
         System.out.println("Connected to the cluster: " + client.connections());
 
-        // SQL API (use table created in CLI with 'CREATE TABLE Person (id INT PRIMARY KEY, name VARCHAR)').
-        client.sql().execute(null, "UPSERT INTO Person VALUES (1, 'John')");
+        // SQL API (use table created in CLI).
         client.sql().execute(null, "SELECT * FROM Person")
                 .forEachRemaining(x -> System.out.println(x.stringValue("name")));
 
