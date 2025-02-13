@@ -46,16 +46,10 @@ public class Main {
         // Mix and match APIs.
         client.sql().execute(null, "SELECT * FROM Person2")
                 .forEachRemaining(x -> System.out.println(x.stringValue("name")));
-
-        // Compute
-        // TBD: Colocated update
-
-        // TBD: Get back to CLI and show the data from there (unified CLI can do all the things).
     }
 
     public static class Person {
-        public Person() {
-        }
+        public Person() { }
 
         public Person(Integer id, String name) {
             this.id = id;
